@@ -1,0 +1,30 @@
+<project>
+
+	<target name="clean">
+		<delete file="ga.jar"/>
+		<delete file="cga.jar"/>
+		<delete dir="build/" />
+		<delete dir="bin/" />
+	</target>
+
+	<property name="lib.dir" value="/usr/local/hadoop"/>
+
+	<path id="classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar"/>
+	</path>
+
+	<target name="compile">
+		<mkdir dir="build/classes"/>
+		<javac srcdir="src" destdir="build/classes" classpathref="classpath"/>
+	</target>
+
+	<target name="jar">
+
+		<jar destfile="ga.jar" basedir="build/classes">
+			<manifest>
+				<attribute name="Main-Class" value="edu.iiitb.test.GATest"/>
+			</manifest>
+		</jar>
+	</target>
+
+</project>
